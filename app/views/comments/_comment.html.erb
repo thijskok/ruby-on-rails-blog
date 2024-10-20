@@ -1,0 +1,21 @@
+<% unless comment.archived? %>
+  <article class="media">
+    <div class="media-content">
+      <div class="content">
+        <p>
+          <strong><%= comment.user.email %></strong>
+          <br />
+          <%= comment.body %>
+        </p>
+      </div>
+
+      <% if user_signed_in? %>
+        <%= link_to "Destroy Comment", [comment.article, comment], data: {
+          turbo_method: :delete,
+          turbo_confirm: "Are you sure?"
+        }, class: "button is-danger" %>
+      <% end %>
+
+    </div>
+  </article>
+<% end %>

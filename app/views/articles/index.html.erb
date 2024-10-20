@@ -1,0 +1,46 @@
+<% content_for :title do %> Blog | Articles <% end %>
+
+<h1 class="title">Articles</h1>
+
+<% if user_signed_in? %>
+  <nav class="level">
+    <div class="level-left">
+      <p class="level-item">
+        <%= link_to "New Article", new_article_path, class: 'button' %>
+      </p>
+    </div>
+  </nav>
+<% end %>
+
+<div class="column is-8 is-offset-2">
+
+  <% if @articles.each do |article| %>
+    <% unless article.archived? %>
+      <div class="card article">
+          <div class="card-content">
+            <div class="media">
+              <div class="media-content has-text-centered">
+                <h2 class="title article-title"><%= article.title %></h2>
+              </div>
+            </div>
+            <div class="content article-body">
+              <p><%= article.body.truncate(100, omission: '... (continued)') %></p>
+              <p>
+                <em><%= article.user.email %></em>
+              </p>
+            </div>
+            <a href="<%= article_path(article) %>">
+              Read more...
+            </a>
+          </div>
+      </div>
+    <% end %>
+  <% end.empty? %>
+    <div class="hero">
+      <div class="hero-body has-text-centered">
+        <strong>There are no articles yet.</strong>
+      </div>
+    </div>
+  <% end %>
+
+</div>

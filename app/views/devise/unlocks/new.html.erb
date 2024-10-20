@@ -1,0 +1,22 @@
+<% content_for :title do %> Blog | Forgot your password? <% end %>
+
+<div class="column is-6 is-offset-3">
+  <h1 class="title">Resend unlock instructions</h1>
+
+  <%= form_for(resource, as: resource_name, url: unlock_path(resource_name), html: { method: :post }) do |form| %>
+    <%= render "devise/shared/error_messages", resource: resource %>
+
+    <div class="field">
+      <%= form.label :email, class: "label" %><br />
+      <%= form.email_field :email, autofocus: true, autocomplete: "email", class: "input" %>
+    </div>
+
+    <div class="field">
+      <div class="control">
+        <%= form.submit "Resend unlock instructions", class: 'button is-link' %>
+      </div>
+    </div>
+  <% end %>
+
+  <%= render "devise/shared/links" %>
+</div>

@@ -1,0 +1,36 @@
+<%= form_with model: article do |form| %>
+
+  <div class="field">
+    <%= form.label :title, class: 'label' %>
+    <div class="control">
+      <%= form.text_field :title, class: "input #{'is-danger' if @article.errors[:title].any?}" %>
+    </div>
+    <% article.errors.full_messages_for(:title).each do |message| %>
+      <p class="help is-danger"><%= message %></p>
+    <% end %>
+  </div>
+
+  <div class="field">
+    <%= form.label :body, class: 'label' %>
+    <%= form.text_area :body, class: "textarea #{'is-danger' if @article.errors[:body].any?}" %>
+    <% article.errors.full_messages_for(:body).each do |message| %>
+      <p class="help is-danger"><%= message %></p>
+    <% end %>
+  </div>
+
+  <div class="field">
+    <%= form.label :status, class: 'label' %>
+    <div class="select">
+      <%= form.select :status, Visible::VALID_STATUSES, selected: article.status || 'public' %>
+    </div>
+  </div>
+
+  <div class="field is-grouped">
+    <div class="control">
+      <%= form.submit class: 'button is-link' %>
+    </div>
+    <div class="control">
+      <%= link_to 'Cancel', articles_path, class: 'button is-light is-link' %>
+    </div>
+  </div>
+<% end %>
