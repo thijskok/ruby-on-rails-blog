@@ -1,7 +1,7 @@
 <%= form_with model: [ article, article.comments.build ] do |form| %>
 
   <div class="field">
-    <%= form.label :body, class: 'label' %>
+    <%= form.label :body, class: "label" %>
     <%= form.text_area :body, class: "textarea #{'is-danger' if @article.errors[:body].any?}" %>
     <% article.errors.full_messages_for(:body).each do |message| %>
       <p class="help is-danger"><%= message %></p>
@@ -9,7 +9,7 @@
   </div>
 
   <div class="field">
-    <%= form.label :status, class: 'label' %>
+    <%= form.label :status, class: "label" %>
     <div class="select">
       <%= form.select :status, Visible::VALID_STATUSES, selected: article.status || 'public' %>
     </div>
@@ -17,7 +17,7 @@
 
   <div class="field">
     <div class="control">
-      <%= form.submit class: 'button is-link' %>
+      <%= form.submit class: "button is-link" %>
     </div>
   </div>
 <% end %>
